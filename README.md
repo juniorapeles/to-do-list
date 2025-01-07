@@ -11,9 +11,9 @@ Um projeto backend desenvolvido em Java com Spring Boot para gerenciar tarefas. 
 ### 1. Autenticação de Usuários
 
 - [x] Implementar autenticação com JWT.
-    - [x ] Criar endpoints para login e registro de usuários.
+    - [x] Criar endpoints para login e registro de usuários.
     - [ ] Proteger as rotas com Spring Security.
-- [ ] Adicionar roles para usuários (e.g., `admin`, `user`).
+- [x] Adicionar roles para usuários (e.g., `admin`, `user`).
 
 ### 2. Funcionalidades Básicas de Tarefas
 
