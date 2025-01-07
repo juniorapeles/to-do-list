@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.junior</groupId>
     <artifactId>taskapp</artifactId>
-    <version>0.0.2</version>
+    <version>1.0.3</version>
     <name>taskapp</name>
     <description>taskapp</description>
     <url/>
