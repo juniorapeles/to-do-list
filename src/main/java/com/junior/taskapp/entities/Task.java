@@ -11,15 +11,19 @@ public class Task {
     private Long id;
     private String title;
     private String description;
+    private String status;
+    private String priority;
+
+    public Task(Long id, String title, String description, String status) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.status = status;
+    }
 
     public Task() {
     }
 
-    public Task(Long id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
 
     public Long getId() {
         return id;
@@ -43,5 +47,21 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }
