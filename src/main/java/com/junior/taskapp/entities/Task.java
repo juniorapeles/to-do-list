@@ -1,6 +1,10 @@
 package com.junior.taskapp.entities;
 
+import com.junior.taskapp.entities.enums.Priority;
+import com.junior.taskapp.entities.enums.Status;
 import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "tb_task")
@@ -11,14 +15,16 @@ public class Task {
     private Long id;
     private String title;
     private String description;
-    private String status;
-    private String priority;
+    private Status status;
+    private Priority priority;
 
-    public Task(Long id, String title, String description, String status) {
+
+    public Task(Long id, String title, String description, Status status, Priority priority) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
+        this.priority = priority;
     }
 
     public Task() {
@@ -49,19 +55,19 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public String getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 }

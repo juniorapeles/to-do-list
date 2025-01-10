@@ -4,11 +4,11 @@ import com.junior.taskapp.dto.TaskDTO;
 import com.junior.taskapp.entities.Task;
 import com.junior.taskapp.repository.TaskRepository;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ServiceTask {
@@ -21,22 +21,24 @@ public class ServiceTask {
 
     public TaskDTO findById(long id) {
         Optional<Task> entity = taskRepository.findById(id);
-        return entity.map(task -> new TaskDTO(task.getId(), task.getTitle(), task.getDescription()))
+        return entity.map(task -> new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority()))
                 .orElse(null);
     }
 
     public TaskDTO createTask(TaskDTO taskDTO) {
         Task task = new Task();
         BeanUtils.copyProperties(taskDTO, task);
-       taskRepository.save(task);
-       return new TaskDTO(task.getId(), task.getTitle(), task.getDescription());
+        taskRepository.save(task);
+        return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority());
     }
 
-    public List<TaskDTO> getAllTasks() {
-        List<Task> entities = taskRepository.findAll();
-        return entities.stream()
-                .map(task -> new TaskDTO(task.getId(), task.getTitle(), task.getDescription()))
-                .collect(Collectors.toList());
+    public Page<TaskDTO> getAllTasks(Pageable pageable) {
+        return taskRepository.findAll(pageable)
+                .map(task -> new TaskDTO(task.getId(),
+                        task.getTitle(),
+                        task.getDescription(),
+                        task.getStatus(),
+                        task.getPriority()));
     }
 
     public TaskDTO updateTaskById(TaskDTO dto) {
@@ -46,7 +48,7 @@ public class ServiceTask {
             entity.setTitle(dto.title());
             entity.setDescription(dto.description());
             taskRepository.save(entity);
-            return new TaskDTO(entity.getId(), entity.getTitle(), entity.getDescription());
+            return new TaskDTO(entity.getId(), entity.getTitle(), entity.getDescription(), entity.getStatus(), entity.getPriority());
         }
         return null;
     }

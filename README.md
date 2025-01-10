@@ -17,14 +17,12 @@ Um projeto backend desenvolvido em Java com Spring Boot para gerenciar tarefas. 
 
 ### 2. Funcionalidades Básicas de Tarefas
 
-- [ ] Adicionar campos para:
-    - [ ] Prioridade da tarefa (e.g., `Alta`, `Média`, `Baixa`).
-    - [ ] Status da tarefa (e.g., `Pendente`, `Concluído`).
-    - [ ] Data de vencimento.
-- [ ] Implementar filtros de pesquisa:
-    - [ ] Filtrar por prioridade.
-    - [ ] Filtrar por status.
-    - [ ] Filtrar por data de vencimento.
+- [x] Adicionar campos para:
+    - [x] Prioridade da tarefa (e.g., `Alta`, `Média`, `Baixa`).
+    - [x] Status da tarefa (e.g., `Pendente`, `Concluído`).
+- [x] Implementar filtros de pesquisa:
+    - [x] Filtrar por prioridade.
+    - [x] Filtrar por status.
 
 ### 3. Funcionalidades Avançadas
 

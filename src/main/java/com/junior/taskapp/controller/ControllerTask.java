@@ -2,12 +2,15 @@ package com.junior.taskapp.controller;
 
 import com.junior.taskapp.dto.TaskDTO;
 import com.junior.taskapp.service.ServiceTask;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/task")
@@ -16,6 +19,13 @@ public class ControllerTask {
     @Autowired
     private ServiceTask serviceTask;
 
+    @GetMapping
+    public ResponseEntity<Page<TaskDTO>> getAllTasks(Pageable pageable) {
+        Page<TaskDTO> tasks = serviceTask.getAllTasks(pageable);
+        return ResponseEntity.ok(tasks);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<TaskDTO> getById(@PathVariable Long id) {
         TaskDTO task = serviceTask.findById(id);
@@ -23,12 +33,6 @@ public class ControllerTask {
             return ResponseEntity.ok(task);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    @GetMapping
-    public ResponseEntity<List<TaskDTO>> getAllTasks() {
-        List<TaskDTO> tasks = serviceTask.getAllTasks();
-        return ResponseEntity.ok(tasks);
     }
 
     @PostMapping
